@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FULL ASSIGNMENT</title>
+</head>
+
+
+<script >
+var target;            
+var guess_input_text;   
+var guess_input;      
+var finished = false;   
+var guesses = 0;
+var color=["blue","cyan","gold","gray","green","magnetia","orange","red","white","yellow"];
+var target_color;
+function do_game() 
+{
+    var random_number = Math.random() *10;
+    var random_number_index = Math.floor(random_number);
+    target_color = color[random_number_index];
+
+
+    while (!finished) {
+        guess_input_text = prompt("I am thinking of one of these color "+
+                                  "\n\n"+color+
+                                  "\nWhat color I am thinking of?");
+        
+        guesses += 1;   
+        finished = check_guess();
+    }
+}
+
+function changeBackgroundColor(col){
+    myBody=document.getElementsByTagName("body")[0];
+    myBody.style.background = col;
+  //  alert("Congratulations! You have guessed the color.\n "+ "\nIt took you " + guesses + 
+    //      " guesses to finish the game!");
+
+};
+
+function check_guess() {
+    
+    if ((guess_input_text !="blue") && (guess_input_text != "cyan") && (guess_input_text !="gold") && (guess_input_text != "gray") && (guess_input_text != "green") && (guess_input_text !="magnetia" )&& (guess_input_text != "orange") && (guess_input_text !="red") && (guess_input_text != "white")  && (guess_input_text != "yellow"))
+     {
+        alert("Sorry ,I don't recognize your color" + "\nPlease try again.");
+        return false;
+    }
+    if (guess_input_text >target_color) {
+        alert("Sorry, Your guess is not correct"+"\n"+"Hint:Your color is too alphabetically too higher than mine!"+"\nPlease try again");
+        return false;
+    }
+    if (guess_input_text < target_color) {
+        alert("Sorry, Your guess is not correct"+"\n"+"Hint:Your color is too alphabetically too lower than mine!"+"\nPlease try again");
+        return false;
+    }
+   
+   
+        changeBackgroundColor(target_color);
+
+    alert("Congratulations! You have guessed the color.\n "+ "\nIt took you " + guesses + 
+          " guesses to finish the game!");
+
+       
+    return true;   
+	
+}
+
+</script>
+<body onload="do_game()">
+</body>
+</html>
